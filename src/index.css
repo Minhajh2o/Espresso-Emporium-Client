@@ -36,3 +36,22 @@ h3:hover {
   color: #5a3025;
   transition: color 0.3s ease;
 }
+
+.swal2-responsive-image {
+  max-width: 275px;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.swal2-title-no-padding {
+  padding-top: 0 !important;
+}
+
+.swal2-confirm {
+  background-color: #d2b48c !important;
+}
+
+.swal2-confirm:hover {
+  background-color: #c19a6b !important;
+}

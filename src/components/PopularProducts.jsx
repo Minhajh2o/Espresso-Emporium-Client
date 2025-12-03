@@ -44,7 +44,7 @@ const PopularProducts = ({ coffees, onView, onEdit, onDelete }) => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 max-w-5xl mx-auto">
           {coffees.map((coffee) => (
             <CoffeeCard
-              key={coffee.id}
+              key={coffee._id}
               coffee={coffee}
               onView={onView}
               onEdit={onEdit}

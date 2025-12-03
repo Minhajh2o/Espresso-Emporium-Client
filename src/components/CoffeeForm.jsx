@@ -1,19 +1,17 @@
-import React from "react";
-
-const CoffeeForm = ({ title, description, buttonText, onSubmit, initialData = {} }) => {
+const CoffeeForm = ({
+  title,
+  description,
+  buttonText,
+  onSubmit,
+  initialData = {},
+}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    const data = {
-      name: formData.get("name"),
-      chef: formData.get("chef"),
-      supplier: formData.get("supplier"),
-      taste: formData.get("taste"),
-      category: formData.get("category"),
-      details: formData.get("details"),
-      photo: formData.get("photo"),
-    };
-    onSubmit(data);
+    const form = e.target;
+    const formData = new FormData(form);
+    const coffeeData = Object.fromEntries(formData.entries());
+    onSubmit(coffeeData);
+    form.reset();
   };
 
   return (
@@ -26,7 +24,7 @@ const CoffeeForm = ({ title, description, buttonText, onSubmit, initialData = {}
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
-        {/* Name and Chef */}
+        {/* Name and quantity */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
           <div>
             <label className="block text-sm md:text-base font-semibold mb-2 secondary-color">
@@ -43,13 +41,13 @@ const CoffeeForm = ({ title, description, buttonText, onSubmit, initialData = {}
           </div>
           <div>
             <label className="block text-sm md:text-base font-semibold mb-2 secondary-color">
-              Chef
+              Quantity
             </label>
             <input
               type="text"
-              name="chef"
-              placeholder="Enter coffee chef"
-              defaultValue={initialData.chef || ""}
+              name="quantity"
+              placeholder="Enter coffee quantity"
+              defaultValue={initialData.quantity || ""}
               className="w-full px-3 md:px-4 py-2 md:py-3 rounded-md border-2 border-transparent focus:border-[#D2B48C] focus:shadow-xl outline-none bg-white secondary-color text-sm md:text-base transition-colors"
               required
             />
@@ -86,21 +84,8 @@ const CoffeeForm = ({ title, description, buttonText, onSubmit, initialData = {}
           </div>
         </div>
 
-        {/* Category and Details */}
+        {/* price and Details */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-          <div>
-            <label className="block text-sm md:text-base font-semibold mb-2 secondary-color">
-              Category
-            </label>
-            <input
-              type="text"
-              name="category"
-              placeholder="Enter coffee category"
-              defaultValue={initialData.category || ""}
-              className="w-full px-3 md:px-4 py-2 md:py-3 rounded-md border-2 border-transparent focus:border-[#D2B48C] focus:shadow-xl outline-none bg-white secondary-color text-sm md:text-base transition-colors"
-              required
-            />
-          </div>
           <div>
             <label className="block text-sm md:text-base font-semibold mb-2 secondary-color">
               Details
@@ -110,6 +95,19 @@ const CoffeeForm = ({ title, description, buttonText, onSubmit, initialData = {}
               name="details"
               placeholder="Enter coffee details"
               defaultValue={initialData.details || ""}
+              className="w-full px-3 md:px-4 py-2 md:py-3 rounded-md border-2 border-transparent focus:border-[#D2B48C] focus:shadow-xl outline-none bg-white secondary-color text-sm md:text-base transition-colors"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm md:text-base font-semibold mb-2 secondary-color">
+              Price
+            </label>
+            <input
+              type="text"
+              name="price"
+              placeholder="Enter coffee price"
+              defaultValue={initialData.price || ""}
               className="w-full px-3 md:px-4 py-2 md:py-3 rounded-md border-2 border-transparent focus:border-[#D2B48C] focus:shadow-xl outline-none bg-white secondary-color text-sm md:text-base transition-colors"
               required
             />

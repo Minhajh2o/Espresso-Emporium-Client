@@ -1,12 +1,44 @@
-import React from "react";
 import FormBackground from "../components/FormBackground";
 import BackToHomeButton from "../components/BackToHomeButton";
 import CoffeeForm from "../components/CoffeeForm";
+import Swal from "sweetalert2";
+import modalBg from "../assets/more/13.jpg";
 
 const AddCoffee = () => {
-  const handleAddCoffee = (data) => {
-    console.log("Adding coffee:", data);
+  const handleAddCoffee = (newCoffee) => {
+    const { name, photo } = newCoffee;
+    console.log("Adding coffee:", newCoffee);
     // Handle form submission - send data to backend
+    fetch("http://localhost:3000/coffees", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newCoffee),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+        // Show success modal
+        Swal.fire({
+          title: name,
+          text: "Coffee added successfully!",
+          imageUrl: photo,
+          imageWidth: "100%",
+          imageHeight: "auto",
+          imageAlt: "Custom image",
+          background: `url(${modalBg})`,
+          customClass: {
+            image: "swal2-responsive-image",
+            title: "swal2-title-no-padding",
+          },
+          confirmButtonColor: "#D2B48C",
+        });
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("Failed to add coffee.");
+      });
   };
 
   return (

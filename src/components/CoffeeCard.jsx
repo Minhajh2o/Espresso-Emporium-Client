@@ -1,53 +1,57 @@
-import React from "react";
 import { FaEye, FaPen, FaTrash } from "react-icons/fa";
 
 const CoffeeCard = ({ coffee, onView, onEdit, onDelete }) => {
   return (
-    <div className="bg-[#F5F4F1] rounded-lg p-4 md:p-6 flex flex-col md:flex-row items-center gap-4 shadow-md hover:shadow-lg transition-shadow">
+    <div className="bg-[#F5F4F1] rounded-[10px] px-[29px] py-[31px] flex items-center gap-8 shadow-sm hover:shadow-md transition-shadow">
       {/* Coffee Image */}
-      <div className="w-32 h-32 md:w-40 md:h-40 flex-shrink-0">
+      <div className="w-[185px] h-[239px] shrink-0">
         <img
           src={coffee.photo}
           alt={coffee.name}
-          className="w-full h-full object-cover rounded"
+          className="w-full h-full object-cover"
         />
       </div>
 
       {/* Coffee Details */}
-      <div className="flex-grow text-center md:text-left space-y-1">
-        <p className="text-sm md:text-base secondary-color">
-          <span className="font-semibold">Name:</span> {coffee.name}
-        </p>
-        <p className="text-sm md:text-base secondary-color">
-          <span className="font-semibold">Chef:</span> {coffee.chef}
-        </p>
-        <p className="text-sm md:text-base secondary-color">
-          <span className="font-semibold">Price:</span> {coffee.price || "890 Taka"}
-        </p>
+      <div className="grow">
+        <div className="space-y-[15px] font-['Raleway'] text-[20px] leading-normal">
+          <p className="text-[#1B1A1A]">
+            <span className="font-semibold">Name: </span>
+            <span className="text-[#5C5B5B]">{coffee.name}</span>
+          </p>
+          <p className="text-[#1B1A1A]">
+            <span className="font-semibold">Taste: </span>
+            <span className="text-[rgba(27,26,26,0.7)]">{coffee.taste}</span>
+          </p>
+          <p className="text-[#1B1A1A]">
+            <span className="font-semibold">Price: </span>
+            <span className="text-[rgba(27,26,26,0.7)]">{coffee.price || "890 Taka"}</span>
+          </p>
+        </div>
       </div>
 
       {/* Action Buttons */}
-      <div className="flex md:flex-col gap-2 md:gap-3">
+      <div className="flex flex-col gap-4 shrink-0">
         <button
-          onClick={() => onView(coffee)}
-          className="bg-[#D2B48C] hover:bg-[#c19a6b] text-white p-2 md:p-3 rounded transition-colors"
+          onClick={() => onView(coffee._id)}
+          className="bg-[#D2B48C] hover:bg-[#c19a6b] text-white w-10 h-10 rounded-[5px] flex items-center justify-center transition-colors"
           title="View"
         >
-          <FaEye className="text-lg md:text-xl" />
+          <FaEye className="text-[20px]" />
         </button>
         <button
-          onClick={() => onEdit(coffee)}
-          className="bg-[#3C393B] hover:bg-[#2a2829] text-white p-2 md:p-3 rounded transition-colors"
+          onClick={() => onEdit(coffee._id)}
+          className="bg-[#3C393B] hover:bg-[#2a2829] text-white w-10 h-10 rounded-[5px] flex items-center justify-center transition-colors"
           title="Edit"
         >
-          <FaPen className="text-lg md:text-xl" />
+          <FaPen className="text-[20px]" />
         </button>
         <button
           onClick={() => onDelete(coffee)}
-          className="bg-[#EA4744] hover:bg-[#d43633] text-white p-2 md:p-3 rounded transition-colors"
+          className="bg-[#EA4744] hover:bg-[#d43633] text-white w-10 h-10 rounded-[5px] flex items-center justify-center transition-colors"
           title="Delete"
         >
-          <FaTrash className="text-lg md:text-xl" />
+          <FaTrash className="text-[20px]" />
         </button>
       </div>
     </div>

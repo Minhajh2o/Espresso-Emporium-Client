@@ -3,38 +3,51 @@ import Banner from "../components/Banner";
 import Features from "../components/Features";
 import PopularProducts from "../components/PopularProducts";
 import Instagram from "../components/Instagram";
-import cup1 from "../assets/cups/Rectangle 9.png";
-import cup2 from "../assets/cups/Rectangle 10.png";
+import { useLoaderData } from "react-router";
+import Swal from "sweetalert2";
 
 const Home = () => {
-  // Dummy data for demonstration - will be replaced with backend data
-  const dummyCoffees = [
-    {
-      id: 1,
-      name: "Americano Coffee",
-      chef: "Mr. Matin Paul",
-      price: "890 Taka",
-      photo: cup1,
-    },
-    {
-      id: 2,
-      name: "Cappuccino",
-      chef: "Mr. John Smith",
-      price: "950 Taka",
-      photo: cup2,
-    },
-  ];
+  const coffees = useLoaderData();
+  console.log(coffees);
 
-  const handleView = (coffee) => {
-    console.log("View:", coffee);
+  const handleView = (id) => {
+    console.log("View:", id);
   };
 
-  const handleEdit = (coffee) => {
-    console.log("Edit:", coffee);
+  const handleUpdate = (id) => {
+    console.log("Update:", id);
   };
 
+
+  // Delete Coffee Handler
   const handleDelete = (coffee) => {
-    console.log("Delete:", coffee);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Perform delete operation
+        fetch(`http://localhost:3000/coffees/${coffee._id}`, {
+          method: "DELETE",
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.deletedCount) {
+              Swal.fire({
+                title: "Deleted!",
+                text: `${coffee.name} has been removed.`,
+                icon: "success",
+              });
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
+    });
   };
 
   return (
@@ -42,9 +55,9 @@ const Home = () => {
       <Banner />
       <Features />
       <PopularProducts
-        coffees={dummyCoffees}
+        coffees={coffees}
         onView={handleView}
-        onEdit={handleEdit}
+        onEdit={handleUpdate}
         onDelete={handleDelete}
       />
       <Instagram />
