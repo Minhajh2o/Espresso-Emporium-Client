@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Banner from "../components/Banner";
 import Features from "../components/Features";
 import PopularProducts from "../components/PopularProducts";
@@ -7,12 +7,9 @@ import { useLoaderData } from "react-router";
 import Swal from "sweetalert2";
 
 const Home = () => {
-  const coffees = useLoaderData();
-  console.log(coffees);
+  const initialCoffees = useLoaderData();
+  const [coffees, setCoffees] = useState(initialCoffees);
 
-  const handleView = (id) => {
-    console.log("View:", id);
-  };
 
   const handleUpdate = (id) => {
     console.log("Update:", id);
@@ -41,6 +38,9 @@ const Home = () => {
                 text: `${coffee.name} has been removed.`,
                 icon: "success",
               });
+              // Remove deleted coffee from the list
+              const remainingCoffees = initialCoffees.filter((c) => c._id !== coffee._id);
+              setCoffees(remainingCoffees);
             }
           })
           .catch((error) => {
@@ -56,7 +56,6 @@ const Home = () => {
       <Features />
       <PopularProducts
         coffees={coffees}
-        onView={handleView}
         onEdit={handleUpdate}
         onDelete={handleDelete}
       />

@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import popularBg from "../assets/more/1.png";
 import CoffeeCard from "./CoffeeCard";
 
-const PopularProducts = ({ coffees, onView, onEdit, onDelete }) => {
+const PopularProducts = ({ coffees, onDelete }) => {
   return (
     <div
       className="bg-cover bg-center py-12 md:py-16 lg:py-20"
@@ -46,8 +46,6 @@ const PopularProducts = ({ coffees, onView, onEdit, onDelete }) => {
             <CoffeeCard
               key={coffee._id}
               coffee={coffee}
-              onView={onView}
-              onEdit={onEdit}
               onDelete={onDelete}
             />
           ))}
