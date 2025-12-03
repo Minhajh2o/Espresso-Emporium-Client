@@ -4,6 +4,7 @@ import Home from "../pages/Home";
 import AddCoffee from "../pages/AddCoffee";
 import UpdateCoffee from "../pages/UpdateCoffee";
 import ViewCoffeeDetails from "../pages/ViewCoffeeDetails";
+import NotFound from "../pages/NotFound";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
         path: "/coffee/:id",
         loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/coffees/${params.id}`),
         element: <ViewCoffeeDetails />,
+      },
+      {
+        path: "*",
+        element: <NotFound />,
       },
     ],
   },
