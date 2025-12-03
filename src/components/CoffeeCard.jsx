@@ -3,60 +3,55 @@ import { Link } from "react-router";
 
 const CoffeeCard = ({ coffee, onDelete }) => {
   return (
-    <div className="bg-[#F5F4F1] rounded-[10px] px-[29px] py-[31px] flex items-center gap-8 shadow-sm hover:shadow-md transition-shadow">
+    <div className="bg-gray-100 rounded-lg md:rounded-xl px-6 md:px-7 py-6 md:py-7 flex flex-col md:flex-row items-center gap-6 md:gap-8 shadow-sm hover:shadow-md hover:scale-101 transition-all z-10">
       {/* Coffee Image */}
-      <div className="w-[185px] h-[239px] shrink-0">
+      <div className="w-32 md:w-32 shrink-0">
         <img
           src={coffee.photo}
           alt={coffee.name}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover rounded"
         />
       </div>
 
       {/* Coffee Details */}
-      <div className="grow">
-        <div className="space-y-[15px] font-['Raleway'] text-[20px] leading-normal">
-          <p className="text-[#1B1A1A]">
-            <span className="font-semibold">Name: </span>
-            <span className="text-[#5C5B5B]">{coffee.name}</span>
+      <div className="grow w-full sm:w-auto text-center sm:text-left">
+        <div className="space-y-2 md:space-y-3 text-base md:text-lg leading-normal">
+          <p className="font-semibold">
+            Name: <span className="text-gray-600 font-medium">{coffee.name}</span>
           </p>
-          <p className="text-[#1B1A1A]">
-            <span className="font-semibold">Taste: </span>
-            <span className="text-[rgba(27,26,26,0.7)]">{coffee.taste}</span>
+          <p className="font-semibold">
+            Taste: <span className="text-gray-600 font-medium">{coffee.taste}</span>
           </p>
-          <p className="text-[#1B1A1A]">
-            <span className="font-semibold">Price: </span>
-            <span className="text-[rgba(27,26,26,0.7)]">
-              {coffee.price || "890 Taka"}
-            </span>
+          <p className="font-semibold">
+            Price: <span className="text-gray-600 font-medium">{`${coffee.price}$`}</span>
           </p>
         </div>
       </div>
 
       {/* Action Buttons */}
-      <div className="flex flex-col gap-4 shrink-0">
+      <div className="flex md:flex-col gap-3 shrink-0">
         <Link to={`/coffee/${coffee._id}`}>
           <button
-            className="bg-[#D2B48C] hover:bg-[#c19a6b] text-white w-10 h-10 rounded-[5px] flex items-center justify-center transition-colors"
+            className="bg-[#D2B48C] hover:bg-[#c19a6b] text-white w-9 h-9 sm:w-10 sm:h-10 rounded-[5px] flex items-center justify-center transition-colors"
             title="View"
           >
-            <FaEye className="text-[20px]" />
+            <FaEye className="text-lg" />
           </button>
         </Link>
         <Link to={`/update-coffee/${coffee._id}`}>
           <button
-            className="bg-[#3C393B] hover:bg-[#2a2829] text-white w-10 h-10 rounded-[5px] flex items-center justify-center transition-colors"
+            className="bg-gray-800 hover:bg-gray-900 text-white w-9 h-9 sm:w-10 sm:h-10 rounded-[5px] flex items-center justify-center transition-colors"
             title="Edit"
           >
-            <FaPen className="text-[20px]" />
+            <FaPen className="text-lg" />
           </button>
         </Link>
         <button
           onClick={() => onDelete(coffee)}
-          className="bg-[#EA4744] hover:bg-[#d43633] text-white w-10 h-10 rounded-[5px] flex items-center justify-center transition-colors"
+          className="bg-red-500 hover:bg-red-600 text-white w-9 h-9 sm:w-10 sm:h-10 rounded-[5px] flex items-center justify-center transition-colors"
           title="Delete"
         >
-          <FaTrash className="text-[20px]" />
+          <FaTrash className="text-lg" />
         </button>
       </div>
     </div>

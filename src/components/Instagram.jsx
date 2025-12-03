@@ -1,5 +1,5 @@
 import React from "react";
-import instagramBg from "../assets/more/10.png";
+// import instagramBg from "../assets/more/10.png";
 import cup1 from "../assets/cups/Rectangle 9.png";
 import cup2 from "../assets/cups/Rectangle 10.png";
 import cup3 from "../assets/cups/Rectangle 11.png";
@@ -15,13 +15,13 @@ const Instagram = () => {
   return (
     <div
       className="bg-cover bg-center py-12 md:py-16 lg:py-20"
-      style={{ backgroundImage: `url(${instagramBg})` }}
+      // style={{ backgroundImage: `url(${instagramBg})` }}
     >
       <div className="container max-w-7xl mx-auto px-4 md:px-8">
         {/* Section Header */}
         <div className="text-center mb-8 md:mb-12">
           <p className="text-sm md:text-base secondary-color mb-2">
-            Follow Us Now
+            --- Follow Us Now ---
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl mb-2">
             Follow on Instagram

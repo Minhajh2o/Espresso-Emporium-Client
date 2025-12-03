@@ -4,3 +4,60 @@ https://i.ibb.co.com/DP5BCBzp/3.png
 https://i.ibb.co.com/XMkcB5t/4.png
 https://i.ibb.co.com/bjjNjMYV/5.png
 https://i.ibb.co.com/DftgfFhq/6.png
+
+[
+  {
+    "name": "Arabica Bliss",
+    "quantity": "50",
+    "supplier": "Coffee Roasters Ltd.",
+    "taste": "Smooth & Nutty",
+    "details": "Premium Arabica beans with a mellow flavor and low acidity.",
+    "price": "350",
+    "photo": "https://i.ibb.co.com/zyrTPPB/1.png"
+  },
+  {
+    "name": "Robusta Bold",
+    "quantity": "75",
+    "supplier": "Bean Brothers",
+    "taste": "Strong & Earthy",
+    "details": "High-caffeine Robusta beans with a bold, bitter profile.",
+    "price": "280",
+    "photo": "https://i.ibb.co.com/Ldb9YtV9/2.png"
+  },
+  {
+    "name": "Espresso Elite",
+    "quantity": "40",
+    "supplier": "Espresso Emporium",
+    "taste": "Rich & Intense",
+    "details": "Dark roasted blend perfect for espresso shots and lattes.",
+    "price": "400",
+    "photo": "https://i.ibb.co.com/DP5BCBzp/3.png"
+  },
+  {
+    "name": "Mocha Magic",
+    "quantity": "60",
+    "supplier": "ChocoBeans Co.",
+    "taste": "Chocolatey & Sweet",
+    "details": "Arabica beans infused with natural cocoa for a dessert-like brew.",
+    "price": "370",
+    "photo": "https://i.ibb.co.com/XMkcB5t/4.png"
+  },
+  {
+    "name": "Vanilla Velvet",
+    "quantity": "55",
+    "supplier": "Flavor Fusion Ltd.",
+    "taste": "Creamy & Aromatic",
+    "details": "Smooth vanilla-flavored coffee with a soft, comforting finish.",
+    "price": "390",
+    "photo": "https://i.ibb.co.com/bjjNjMYV/5.png"
+  },
+  {
+    "name": "Hazelnut Harmony",
+    "quantity": "65",
+    "supplier": "NutraBeans",
+    "taste": "Nutty & Balanced",
+    "details": "Medium roast with hazelnut essence for a cozy, flavorful cup.",
+    "price": "360",
+    "photo": "https://i.ibb.co.com/DftgfFhq/6.png"
+  }
+]

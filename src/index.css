@@ -2,6 +2,11 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+/* smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
 /* fonts */
 .rancho-regular {
   font-family: "Rancho", cursive;
@@ -17,18 +22,21 @@
 .secondary-color {
   color: #1b1a1a;
 }
-h1 {
+.primary-text, h1 {
   font-family: "Rancho", cursive;
+  text-shadow: #1b1a1a 2px 2px 4px;
 }
-h2,
-h3 {
+h2, h3 {
   font-family: "Rancho", cursive;
   color: #331a15;
   text-shadow: #1b1a1a 2px 2px 4px;
 }
-
 p {
   color: #1b1a1a;
+  font-family: "Raleway", sans-serif;
+}
+.subtitle {
+  color: #fff;
   font-family: "Raleway", sans-serif;
 }
 h3:hover {
@@ -37,6 +45,7 @@ h3:hover {
   transition: color 0.3s ease;
 }
 
+/* sweetalert2 */
 .swal2-responsive-image {
   max-width: 275px;
   width: 100%;

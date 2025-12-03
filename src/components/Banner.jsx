@@ -4,22 +4,22 @@ import bannerBg from "../assets/more/3.png";
 const Banner = () => {
   return (
     <div
-      className="bg-cover bg-center min-h-[500px] md:min-h-[600px] lg:min-h-[700px] flex items-center"
+      className="bg-cover bg-center min-h-[800px] flex items-center"
       style={{ backgroundImage: `url(${bannerBg})` }}
     >
-      <div className="container max-w-7xl mx-auto px-4 md:px-8">
-        <div className="max-w-xl md:max-w-2xl ml-auto text-white">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl mb-4 md:mb-6">
+      <div className="container max-w-6xl mx-auto px-4">
+        <div className="max-w-3xl ml-auto text-white pl-[89px]">
+          <h1 className="text-6xl mb-4">
             Would you like a Cup of Delicious Coffee?
           </h1>
-          <p className="text-sm md:text-base lg:text-lg mb-6 md:mb-8 opacity-90">
+          <p className="subtitle mb-9">
             It's coffee time - Sip & Savor - Relaxation in every sip! Get the
             nostalgia back!! Your companion of every moment!!! Enjoy the
             beautiful moments and make them memorable.
           </p>
-          <button className="bg-[#E3B577] hover:bg-[#d4a565] text-[#331A15] font-semibold px-6 md:px-8 py-3 md:py-4 text-base md:text-lg transition-colors">
+          <a href="#features" className="primary-text text-[#331a15] text-2xl px-4 md:px-6 py-2 rounded bg-[#E3B577] border-2 border-[#331a15] hover:bg-transparent hover:text-white hover:border-white transition-all">
             Learn More
-          </button>
+          </a>
         </div>
       </div>
     </div>

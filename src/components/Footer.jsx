@@ -9,11 +9,11 @@ const Footer = () => {
     <div>
       {/* footer bg */}
       <div
-        className="bg-cover bg-center  pt-12 md:pt-24 pb-12 px-4"
+        className="bg-cover bg-center pt-12 md:pt-24 pb-12 px-4"
         style={{ backgroundImage: `url(${footerBg})` }}
       >
         {/* footer content */}
-        <div className="container max-w-5xl mx-auto">
+        <div className="container max-w-6xl mx-auto">
           <a href="/">
             <img
             className="w-16 md:w-20 mb-6"
