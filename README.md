@@ -37,6 +37,45 @@ A full-stack MERN (MongoDB, Express.js, React, Node.js) coffee shop management a
 - Mongoose
 - CORS
 
+## 📂 Project Structure
+
+```
+src/
+├── assets/              # Images and static files
+│   ├── cups/           # Coffee cup images
+│   ├── icons/          # Feature icons
+│   ├── more/           # Background images and logos
+│   └── 404/            # Error page assets
+│
+├── components/          # Reusable UI components
+│   ├── Banner.jsx      # Hero section with CTA
+│   ├── Features.jsx    # Coffee features showcase
+│   ├── PopularProducts.jsx  # Coffee grid display
+│   ├── CoffeeCard.jsx  # Individual coffee card
+│   ├── Instagram.jsx   # Photo gallery section
+│   ├── Header.jsx      # App header with logo
+│   ├── Footer.jsx      # App footer with social links
+│   ├── CoffeeForm.jsx  # Reusable form component
+│   ├── FormBackground.jsx  # Form wrapper with styling
+│   └── BackToHomeButton.jsx  # Navigation button
+│
+├── pages/              # Route pages
+│   ├── Home.jsx        # Landing page
+│   ├── AddCoffee.jsx   # Add new coffee page
+│   ├── UpdateCoffee.jsx # Edit coffee page
+│   ├── ViewCoffeeDetails.jsx # Coffee detail view
+│   └── NotFound.jsx    # 404 error page
+│
+├── layout/             # Layout components
+│   └── MainLayout.jsx  # App layout wrapper
+│
+├── routes/             # Routing configuration
+│   └── router.jsx      # React Router setup
+│
+├── main.jsx            # App entry point
+└── index.css           # Global styles and utilities
+```
+
 ## 🚀 Getting Started
 
 ### Prerequisites
