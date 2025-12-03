@@ -1,7 +1,7 @@
 import React from 'react';
-import FormBackground from './FormBackground';
-import BackToHomeButton from './BackToHomeButton';
-import CoffeeForm from './CoffeeForm';
+import FormBackground from '../components/FormBackground';
+import BackToHomeButton from '../components/BackToHomeButton';
+import CoffeeForm from '../components/CoffeeForm';
 
 const UpdateCoffee = () => {
     const handleUpdateCoffee = (data) => {
