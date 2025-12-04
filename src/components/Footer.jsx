@@ -105,7 +105,7 @@ const Footer = () => {
                 ></textarea>
                 <button
                   type="submit"
-                  className="px-4 md:px-6 py-2 md:py-2.5 border-2 border-[#331A15] text-[#331A15] rounded-full hover:bg-[#331A15] hover:text-white transition-colors font-medium text-sm md:text-base"
+                  className="px-4 md:px-6 py-2 md:py-2.5 border-2 border-[#331A15] text-[#331A15] rounded-full hover:bg-[#331A15] hover:text-white transition-colors font-medium text-base md:text-lg primary-text"
                 >
                   Send Message
                 </button>

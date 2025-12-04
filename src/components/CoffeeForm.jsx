@@ -1,3 +1,5 @@
+import { BsFillCupHotFill } from "react-icons/bs";
+
 const CoffeeForm = ({
   title,
   description,
@@ -130,11 +132,9 @@ const CoffeeForm = ({
         </div>
 
         {/* Submit Button */}
-        <button
-          type="submit"
-          className="w-full bg-[#D2B48C] hover:bg-[#c19a6b] text-[#331A15] font-semibold py-3 md:py-3.5 rounded-md border-2 border-[#331A15] transition-colors text-base md:text-lg"
-        >
-          {buttonText}
+        <button className="w-full inline-flex items-center justify-center gap-2 primary-text text-white text-xl md:text-2xl font-semibold px-4 md:px-6 py-2 rounded border-2 border-[#331A15] bg-[#E3B577] hover:bg-transparent hover:text-[#331A15] transition-colors tracking-wide cursor-pointer">
+          {buttonText}{" "}
+          <BsFillCupHotFill className="drop-shadow-[2px_2px_4px_#1b1a1a]" />
         </button>
       </form>
     </div>

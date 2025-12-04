@@ -2,7 +2,7 @@ import { Link } from "react-router";
 
 const NotFound = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-[#ECEAE3] to-white px-4">
+    <div className="min-h-screen flex items-center justify-center bg-linear-to-b from-[#ECEAE3] to-white px-4">
       <div className="text-center max-w-2xl">
         {/* Error Message */}
         <h1 className="text-6xl md:text-8xl font-['Rancho'] text-[#331A15] mb-4">
