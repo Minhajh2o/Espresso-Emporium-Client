@@ -10,6 +10,7 @@ const UpdateCoffee = () => {
   const coffee = useLoaderData();
   const [updatedCoffee, setUpdatedCoffee] = useState(coffee);
 
+  // Handle Update Coffee
   const handleUpdateCoffee = (coffeeData) => {
     console.log("Updating coffee:", coffeeData);
     fetch(`http://localhost:3000/coffees/${coffee._id}`, {

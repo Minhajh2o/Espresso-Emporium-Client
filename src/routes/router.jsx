@@ -7,6 +7,7 @@ import ViewCoffeeDetails from "../pages/ViewCoffeeDetails";
 import NotFound from "../pages/NotFound";
 import SignIn from "../pages/auth/SignIn";
 import SignUp from "../pages/auth/SignUp";
+import Users from "../pages/auth/Users";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,11 @@ const router = createBrowserRouter([
       {
         path: "signup",
         element: <SignUp />,
+      },
+      {
+        path: "users",
+        loader: () => fetch(`${import.meta.env.VITE_API_URL}/users`),
+        element: <Users />,
       },
       {
         path: "*",

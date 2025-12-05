@@ -2,22 +2,138 @@ import { Link } from "react-router";
 import { FaGoogle, FaSignInAlt } from "react-icons/fa";
 import FormBackground from "../../components/FormBackground";
 import BackToHomeButton from "../../components/BackToHomeButton";
+import { use } from "react";
+import { AuthContext } from "../../context/AuthContext";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
+  const { createUser, signInWithGoogle } = use(AuthContext);
+
   const handleSignUp = (e) => {
     e.preventDefault();
     const form = e.target;
-    const username = form.username.value;
-    const email = form.email.value;
-    const password = form.password.value;
-    const photoURL = form.photoURL.value;
-    console.log({ username, email, password, photoURL });
-    // Handle sign up logic
+    const formData = new FormData(form);
+    const { email, password, ...rest } = Object.fromEntries(formData.entries());
+    console.log({ email, password, ...rest });
+
+    // create user with email and password
+    createUser(email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log("User created:", user);
+
+        // Prepare user info to store in the database
+        const userInfo = {
+          email,
+          ...rest,
+          creationTime:
+            userCredential.user?.metadata?.creationTime ||
+            new Date().toISOString(),
+          lastSignInTime:
+            userCredential.user?.metadata?.lastSignInTime ||
+            new Date().toISOString(),
+        };
+
+        // Post new user info to the server
+        fetch("http://localhost:3000/users", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userInfo),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("User info saved in the database:", data);
+            if (data.insertedId) {
+              // Show success modal
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Your account has been created successfully",
+                showConfirmButton: false,
+                timer: 3000,
+              });
+              form.reset();
+            }
+          })
+          .catch((error) => {
+            console.error("Error saving user info in the database:", error);
+          });
+      })
+      .catch((error) => {
+        console.error("Error creating user:", error);
+        // error modals
+        if (error.code === "auth/email-already-in-use") {
+          Swal.fire({
+            icon: "error",
+            title: "Email Already in Use",
+            text: "The email address is already associated with another account.",
+          });
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Sign Up Failed",
+            text: error.message,
+          });
+        }
+      });
   };
 
+  // Google Sign Up Handler
   const handleGoogleSignUp = () => {
-    console.log("Google Sign Up");
-    // Handle Google sign up logic
+    signInWithGoogle()
+      .then((result) => {
+        const user = result.user;
+        console.log("Google Sign Up successful:", user);
+
+        // Prepare user info to store in the database
+        const userInfo = {
+          email: user.email,
+          username: user.displayName || "Google User",
+          photoURL: user.photoURL || "",
+          creationTime: user.metadata?.creationTime || new Date().toISOString(),
+          lastSignInTime:
+            user.metadata?.lastSignInTime || new Date().toISOString(),
+        };
+
+        // Post Google user info to the server
+        fetch("http://localhost:3000/users", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userInfo),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("Google user info saved in the database:", data);
+            if (data.insertedId) {
+              // Show success modal
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Signed up with Google successfully",
+                showConfirmButton: false,
+                timer: 3000,
+              });
+            }
+          })
+          .catch((error) => {
+            console.error(
+              "Error saving Google user info in the database:",
+              error
+            );
+          });
+      })
+      .catch((error) => {
+        console.error("Error during Google Sign Up:", error);
+        Swal.fire({
+          icon: "error",
+          title: "Google Sign Up Failed",
+          text: error.message,
+        });
+      });
   };
 
   return (
@@ -93,7 +209,8 @@ const SignUp = () => {
             type="submit"
             className="w-full inline-flex items-center justify-center gap-2 primary-text text-white text-xl md:text-2xl font-semibold py-2 md:py-3 rounded border-2 border-[#331A15] bg-[#E3B577] hover:bg-white hover:text-[#331A15] transition-colors tracking-wide cursor-pointer"
           >
-            Sign Up <FaSignInAlt className="-scale-x-100 drop-shadow-[2px_2px_2px_#1b1a1a]" />
+            Sign Up{" "}
+            <FaSignInAlt className="-scale-x-100 drop-shadow-[2px_2px_2px_#1b1a1a]" />
           </button>
         </form>
 

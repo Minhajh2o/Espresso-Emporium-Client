@@ -10,12 +10,6 @@ const Home = () => {
   const initialCoffees = useLoaderData();
   const [coffees, setCoffees] = useState(initialCoffees);
 
-
-  const handleUpdate = (id) => {
-    console.log("Update:", id);
-  };
-
-
   // Delete Coffee Handler
   const handleDelete = (coffee) => {
     Swal.fire({
@@ -56,7 +50,6 @@ const Home = () => {
       <Features />
       <PopularProducts
         coffees={coffees}
-        onEdit={handleUpdate}
         onDelete={handleDelete}
       />
       <Instagram />

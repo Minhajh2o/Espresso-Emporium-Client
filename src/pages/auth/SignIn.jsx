@@ -2,8 +2,14 @@ import { Link } from "react-router";
 import { FaGoogle, FaSignInAlt } from "react-icons/fa";
 import FormBackground from "../../components/FormBackground";
 import BackToHomeButton from "../../components/BackToHomeButton";
+import { AuthContext } from "../../context/AuthContext";
+import { use } from "react";
+import Swal from "sweetalert2";
 
 const SignIn = () => {
+  const { signInUser, signInWithGoogle } = use(AuthContext);
+
+  // Handle Sign In
   const handleSignIn = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -11,11 +17,104 @@ const SignIn = () => {
     const password = form.password.value;
     console.log({ email, password });
     // Handle sign in logic
+    signInUser(email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log("User signed in:", user);
+
+        const userData = {
+          email: user.email,
+          lastSignInTime:
+            userCredential.user?.metadata?.lastSignInTime ||
+            new Date().toISOString(),
+        };
+
+        fetch("http://localhost:3000/users", {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(userData),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("User info updated in the database:", data);
+            if (data.modifiedCount) {
+              console.log("User last sign-in time updated.");
+              // show success modal
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Signed in successfully",
+                showConfirmButton: false,
+                timer: 2000,
+              });
+            }
+          })
+          .catch((error) => {
+            console.error("Error updating user info:", error);
+          });
+        form.reset();
+      })
+      .catch((error) => {
+        console.error("Error signing in:", error);
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "Sign in failed",
+          text: error.message,
+          showConfirmButton: true,
+        });
+      });
   };
 
+  // Handle Google Sign In
   const handleGoogleSignIn = () => {
     console.log("Google Sign In");
     // Handle Google sign in logic
+    signInWithGoogle()
+      .then((result) => {
+        const user = result.user;
+
+        // Prepare user info to update in the database
+        const userData = {
+          email: user.email,
+          lastSignInTime: user.metadata?.lastSignInTime || new Date().toISOString(),
+        };
+        // Update Google user info in the server
+        if (user) {
+          fetch("http://localhost:3000/users", {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(userData),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("User info updated in the database:", data);
+            if (data.modifiedCount) {
+              console.log("User last sign-in time updated.");
+              // show success modal
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Signed in with Google successfully",
+                showConfirmButton: false,
+                timer: 2000,
+              });
+            }
+          })
+          .catch((error) => {
+            console.error("Error updating user info:", error);
+          });
+        }
+      })
+      .catch((error) => {
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "Google sign in failed",
+          text: error.message,
+          showConfirmButton: true,
+        });
+      });
   };
 
   return (
@@ -61,8 +160,10 @@ const SignIn = () => {
           {/* Sign In Button */}
           <button
             type="submit"
-            className="w-full inline-flex items-center justify-center gap-2 primary-text text-white text-xl md:text-2xl font-semibold py-2 md:py-3 rounded border-2 border-[#331A15] bg-[#E3B577] hover:bg-white hover:text-[#331A15] transition-colors tracking-wide cursor-pointer">
-            Sign In <FaSignInAlt className="drop-shadow-[2px_2px_2px_#1b1a1a]" />
+            className="w-full inline-flex items-center justify-center gap-2 primary-text text-white text-xl md:text-2xl font-semibold py-2 md:py-3 rounded border-2 border-[#331A15] bg-[#E3B577] hover:bg-white hover:text-[#331A15] transition-colors tracking-wide cursor-pointer"
+          >
+            Sign In{" "}
+            <FaSignInAlt className="drop-shadow-[2px_2px_2px_#1b1a1a]" />
           </button>
         </form>
 
