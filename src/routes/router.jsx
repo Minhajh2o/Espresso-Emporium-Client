@@ -16,7 +16,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        loader: () => fetch("http://localhost:3000/coffees"),
+        loader: () => fetch("https://espresso-emporium-server-5cr6.onrender.com/coffees"),
         element: <Home />,
       },
       {
@@ -25,12 +25,12 @@ const router = createBrowserRouter([
       },
       {
         path: "update-coffee/:id",
-          loader: ({ params }) => fetch(`http://localhost:3000/coffees/${params.id}`),
+          loader: ({ params }) => fetch(`https://espresso-emporium-server-5cr6.onrender.com/coffees/${params.id}`),
         element: <UpdateCoffee />,
       },
       {
         path: "/coffee/:id",
-        loader: ({ params }) => fetch(`http://localhost:3000/coffees/${params.id}`),
+        loader: ({ params }) => fetch(`https://espresso-emporium-server-5cr6.onrender.com/coffees/${params.id}`),
         element: <ViewCoffeeDetails />,
       },
       {
@@ -43,7 +43,7 @@ const router = createBrowserRouter([
       },
       {
         path: "users",
-        loader: () => fetch("http://localhost:3000/users"),
+        loader: () => fetch("https://espresso-emporium-server-5cr6.onrender.com/users"),
         element: <Users />,
       },
       {

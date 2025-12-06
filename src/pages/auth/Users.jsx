@@ -30,7 +30,7 @@ const Users = () => {
             deleteUserAccount()
             .then(() => {
               console.log("User deleted from Firebase:", user._id);
-              fetch(`http://localhost:3000/users/${user._id}`, {
+              fetch(`https://espresso-emporium-server-5cr6.onrender.com/users/${user._id}`, {
               method: "DELETE",
             })
               .then((response) => response.json())

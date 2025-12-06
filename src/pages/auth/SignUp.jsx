@@ -35,7 +35,7 @@ const SignUp = () => {
         };
 
         // Post new user info to the server
-        fetch("http://localhost:3000/users", {
+        fetch("https://espresso-emporium-server-5cr6.onrender.com/users", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -98,7 +98,7 @@ const SignUp = () => {
         };
 
         // Post Google user info to the server
-        fetch("http://localhost:3000/users", {
+        fetch("https://espresso-emporium-server-5cr6.onrender.com/users", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

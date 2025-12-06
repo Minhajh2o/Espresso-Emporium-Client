@@ -29,7 +29,7 @@ const SignIn = () => {
             new Date().toISOString(),
         };
 
-        fetch("http://localhost:3000/users", {
+        fetch("https://espresso-emporium-server-5cr6.onrender.com/users", {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(userData),
@@ -81,7 +81,7 @@ const SignIn = () => {
         };
         // Update Google user info in the server
         if (user) {
-          fetch("http://localhost:3000/users", {
+          fetch("https://espresso-emporium-server-5cr6.onrender.com/users", {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(userData),
