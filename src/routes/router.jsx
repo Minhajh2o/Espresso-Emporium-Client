@@ -16,7 +16,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        loader: () => fetch(`${import.meta.env.VITE_API_URL}/coffees`),
+        loader: () => fetch("http://localhost:3000/coffees"),
         element: <Home />,
       },
       {
@@ -25,12 +25,12 @@ const router = createBrowserRouter([
       },
       {
         path: "update-coffee/:id",
-          loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/coffees/${params.id}`),
+          loader: ({ params }) => fetch(`http://localhost:3000/coffees/${params.id}`),
         element: <UpdateCoffee />,
       },
       {
         path: "/coffee/:id",
-        loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/coffees/${params.id}`),
+        loader: ({ params }) => fetch(`http://localhost:3000/coffees/${params.id}`),
         element: <ViewCoffeeDetails />,
       },
       {
@@ -43,7 +43,7 @@ const router = createBrowserRouter([
       },
       {
         path: "users",
-        loader: () => fetch(`${import.meta.env.VITE_API_URL}/users`),
+        loader: () => fetch("http://localhost:3000/users"),
         element: <Users />,
       },
       {
